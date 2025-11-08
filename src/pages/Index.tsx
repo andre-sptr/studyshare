@@ -4,8 +4,10 @@ import MusicPlayer from "@/components/MusicPlayer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, MessageSquare, Upload, Users, Sparkles, Heart, Star } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
+  const { user, isLoading } = useAuth();
   const features = [
     {
       icon: <BookOpen className="h-12 w-12 text-primary" />,
@@ -68,7 +70,7 @@ const Index = () => {
             Selamat Datang di<br />StudyShare! ✨
           </h1>
           <p className="text-xl md:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto font-medium">
-            Tempat anak SMA berbagi video belajar, berdiskusi, dan upload tugas bareng.
+            Tempat anak Madrasah berbagi video belajar, berdiskusi, dan upload tugas bareng.
             <span className="block mt-2 text-lg">🌟 Belajar jadi seru dan aesthetic! 💙</span>
           </p>
           <Link to="/materials">
@@ -113,31 +115,33 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="pb-20 px-4">
-        <div className="container mx-auto">
-          <Card className="glass-card border-0 glow-effect max-w-4xl mx-auto overflow-hidden">
-            <CardContent className="p-12 text-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 animate-gradient" />
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-                  Siap Belajar Bareng? 🚀
-                </h2>
-                <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-                  Gabung sekarang dan rasakan pengalaman belajar yang berbeda!
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="glow-effect text-white font-semibold">
-                    Daftar Sekarang 💙
-                  </Button>
-                  <Button size="lg" variant="outline" className="glass-effect font-semibold">
-                    Login ✨
-                  </Button>
+      {!isLoading && !user && (
+        <section className="pb-20 px-4">
+          <div className="container mx-auto">
+            <Card className="glass-card border-0 glow-effect max-w-4xl mx-auto overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 animate-gradient" />
+                <div className="relative z-10">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
+                    Siap Belajar Bareng? 🚀
+                  </h2>
+                  <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
+                    Gabung sekarang dan rasakan pengalaman belajar yang berbeda!
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="glow-effect text-white font-semibold" asChild>
+                      <Link to="/register">Daftar Sekarang 💙</Link>
+                    </Button>
+                    <Button size="lg" variant="outline" className="glass-effect font-semibold" asChild>
+                      <Link to="/login">Login ✨</Link>
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="glass-effect border-t border-border/50 py-8 mt-20">

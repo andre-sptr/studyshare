@@ -14,7 +14,7 @@ const Team = () => {
   ];
 
   const socialLinks = [
-    { username: "@manicsiak", url: "https://instagram.com/manicsiak" },
+    { username: "@manic_siak", url: "https://www.instagram.com/manic_siak" },
     { username: "@vastranoversee", url: "https://instagram.com/vastranoversee" },
   ];
 
